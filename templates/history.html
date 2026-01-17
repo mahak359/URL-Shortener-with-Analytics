@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Link History</h2>
+<div class="table-responsive bg-white p-3 shadow-sm rounded">
+    <table class="table table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Original URL</th>
+                <th>Shortened Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+            <tr>
+                <td class="text-truncate" style="max-width: 300px;">{{ url.original_url }}</td>
+                <td><a href="/{{ url.short_code }}" target="_blank">{{ host }}{{ url.short_code }}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

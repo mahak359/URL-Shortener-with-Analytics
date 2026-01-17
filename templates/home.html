@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <h1 class="mb-4">Shorten Your URL</h1>
+        <form method="POST">
+            <div class="input-group mb-3">
+                <input type="text" name="url" class="form-control" placeholder="Paste your long link here..." required>
+                <button class="btn btn-primary" type="submit">Shorten</button>
+            </div>
+        </form>
+
+        {% if short_url %}
+        <div class="card mt-4 p-3 border-success">
+            <p>Your shortened URL is:</p>
+            <div class="input-group">
+                <input type="text" value="{{ short_url }}" id="shortUrl" class="form-control" readonly>
+                <button class="btn btn-outline-secondary" onclick="copyToClipboard()">Copy</button>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function copyToClipboard() {
+    var copyText = document.getElementById("shortUrl");
+    copyText.select();
+    navigator.clipboard.writeText(copyText.value);
+    alert("Copied to clipboard!");
+}
+</script>
+{% endblock %}
